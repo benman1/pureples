@@ -1,4 +1,4 @@
-import neat 
+import neat
 import logging
 import cPickle as pickle
 import gym
@@ -9,8 +9,8 @@ from pureples.hyperneat.hyperneat import create_phenotype_network
 
 # Network input, hidden and output coordinates.
 input_coordinates = []
-for i in range(0,4):
-    input_coordinates.append((-1. +(2.*i/3.), -1.))
+for i in range(0, 4):
+    input_coordinates.append((-1. + (2. * i / 3.), -1.))
 hidden_coordinates = [[(-0.5, 0.5), (0.5, 0.5)], [(-0.5, -0.5), (0.5, -0.5)]]
 output_coordinates = [(-1., 1.), (1., 1.)]
 activations = len(hidden_coordinates) + 2
@@ -18,15 +18,18 @@ activations = len(hidden_coordinates) + 2
 sub = Substrate(input_coordinates, output_coordinates, hidden_coordinates)
 
 # Config for CPPN.
-config = neat.config.Config(neat.genome.DefaultGenome, neat.reproduction.DefaultReproduction,
-                            neat.species.DefaultSpeciesSet, neat.stagnation.DefaultStagnation,
-                            'config_cppn_pole_balancing')
+config = neat.config.Config(
+    neat.genome.DefaultGenome,
+    neat.reproduction.DefaultReproduction,
+    neat.species.DefaultSpeciesSet,
+    neat.stagnation.DefaultStagnation,
+    'config_cppn_pole_balancing')
 
 
 # Use the gym_runner to run this experiment using HyperNEAT.
 def run(gens, env):
     winner, stats = run_hyper(gens, env, 500, config, sub, activations)
-    print("hyperneat_polebalancing done") 
+    print("hyperneat_polebalancing done")
     return winner, stats
 
 

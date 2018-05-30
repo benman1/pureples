@@ -1,4 +1,4 @@
-import neat 
+import neat
 import numpy as np
 from pureples.hyperneat.hyperneat import create_phenotype_network
 from pureples.es_hyperneat.es_hyperneat import ESNetwork
@@ -14,7 +14,15 @@ def ini_pop(state, stats, config, output):
 
 
 # Generic OpenAI Gym runner for ES-HyperNEAT.
-def run_es(gens, env, max_steps, config, params, substrate, max_trials=100, output=True):
+def run_es(
+        gens,
+        env,
+        max_steps,
+        config,
+        params,
+        substrate,
+        max_trials=100,
+        output=True):
     trials = 1
 
     def eval_fitness(genomes, config):
@@ -41,10 +49,11 @@ def run_es(gens, env, max_steps, config, params, substrate, max_trials=100, outp
                     if done:
                         break
                 fitnesses.append(total_reward)
-            
+
             g.fitness = np.array(fitnesses).mean()
 
-    # Create population and train the network. Return winner of network running 100 episodes.
+    # Create population and train the network. Return winner of network
+    # running 100 episodes.
     stats_one = neat.statistics.StatisticsReporter()
     pop = ini_pop(None, stats_one, config, output)
     pop.run(eval_fitness, gens)
@@ -58,14 +67,24 @@ def run_es(gens, env, max_steps, config, params, substrate, max_trials=100, outp
         return winner_ten, (stats_one, stats_ten)
 
     stats_hundred = neat.statistics.StatisticsReporter()
-    pop = ini_pop((pop.population, pop.species, 0), stats_hundred, config, output)
+    pop = ini_pop((pop.population, pop.species, 0),
+                  stats_hundred, config, output)
     trials = max_trials
     winner_hundred = pop.run(eval_fitness, gens)
     return winner_hundred, (stats_one, stats_ten, stats_hundred)
 
 
 # Generic OpenAI Gym runner for HyperNEAT.
-def run_hyper(gens, env, max_steps, config, substrate, activations, max_trials=100, activation="sigmoid", output=True):
+def run_hyper(
+        gens,
+        env,
+        max_steps,
+        config,
+        substrate,
+        activations,
+        max_trials=100,
+        activation="sigmoid",
+        output=True):
     trials = 1
 
     def eval_fitness(genomes, config):
@@ -91,10 +110,11 @@ def run_hyper(gens, env, max_steps, config, substrate, activations, max_trials=1
                     if done:
                         break
                 fitnesses.append(total_reward)
-            
+
             g.fitness = np.array(fitnesses).mean()
 
-    # Create population and train the network. Return winner of network running 100 episodes.
+    # Create population and train the network. Return winner of network
+    # running 100 episodes.
     stats_one = neat.statistics.StatisticsReporter()
     pop = ini_pop(None, stats_one, config, output)
     pop.run(eval_fitness, gens)
@@ -108,7 +128,8 @@ def run_hyper(gens, env, max_steps, config, substrate, activations, max_trials=1
         return winner_ten, (stats_one, stats_ten)
 
     stats_hundred = neat.statistics.StatisticsReporter()
-    pop = ini_pop((pop.population, pop.species, 0), stats_hundred, config, output)
+    pop = ini_pop((pop.population, pop.species, 0),
+                  stats_hundred, config, output)
     trials = max_trials
     winner_hundred = pop.run(eval_fitness, gens)
     return winner_hundred, (stats_one, stats_ten, stats_hundred)
@@ -138,10 +159,11 @@ def run_neat(gens, env, max_steps, config, max_trials=100, output=True):
                     if done:
                         break
                 fitnesses.append(total_reward)
-            
+
             g.fitness = np.array(fitnesses).mean()
 
-    # Create population and train the network. Return winner of network running 100 episodes.
+    # Create population and train the network. Return winner of network
+    # running 100 episodes.
     stats_one = neat.statistics.StatisticsReporter()
     pop = ini_pop(None, stats_one, config, output)
     pop.run(eval_fitness, gens)
@@ -155,8 +177,8 @@ def run_neat(gens, env, max_steps, config, max_trials=100, output=True):
         return winner_ten, (stats_one, stats_ten)
 
     stats_hundred = neat.statistics.StatisticsReporter()
-    pop = ini_pop((pop.population, pop.species, 0), stats_hundred, config, output)
+    pop = ini_pop((pop.population, pop.species, 0),
+                  stats_hundred, config, output)
     trials = max_trials
     winner_hundred = pop.run(eval_fitness, gens)
     return winner_hundred, (stats_one, stats_ten, stats_hundred)
-

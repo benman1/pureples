@@ -1,4 +1,4 @@
-import neat 
+import neat
 import logging
 import cPickle as pickle
 import gym
@@ -24,14 +24,17 @@ params = {"initial_depth": 2,
           "activation": "sigmoid"}
 
 # Config for CPPN.
-config = neat.config.Config(neat.genome.DefaultGenome, neat.reproduction.DefaultReproduction,
-                            neat.species.DefaultSpeciesSet, neat.stagnation.DefaultStagnation,
-                            'config_cppn_mountain_car')
+config = neat.config.Config(
+    neat.genome.DefaultGenome,
+    neat.reproduction.DefaultReproduction,
+    neat.species.DefaultSpeciesSet,
+    neat.stagnation.DefaultStagnation,
+    'config_cppn_mountain_car')
 
 
 def run(gens, env):
     winner, stats = run_es(gens, env, 200, config, params, sub, max_trials=0)
-    print("es_hyperneat_mountain_car_large done") 
+    print("es_hyperneat_mountain_car_large done")
     return winner, stats
 
 
@@ -48,8 +51,8 @@ if __name__ == '__main__':
     # Save CPPN if wished reused and draw it + winner to file.
     cppn = neat.nn.FeedForwardNetwork.create(winner, config)
     network = ESNetwork(sub, cppn, params)
-    net = network.create_phenotype_network(filename="es_hyperneat_mountain_car_large_winner")
+    net = network.create_phenotype_network(
+        filename="es_hyperneat_mountain_car_large_winner")
     draw_net(cppn, filename="es_hyperneat_mountain_car_large_cppn")
     with open('es_hyperneat_mountain_car_large_cppn.pkl', 'wb') as output:
         pickle.dump(cppn, output, pickle.HIGHEST_PROTOCOL)
-

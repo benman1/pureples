@@ -1,4 +1,4 @@
-import neat 
+import neat
 import logging
 import cPickle as pickle
 import gym
@@ -9,21 +9,26 @@ from pureples.hyperneat.hyperneat import create_phenotype_network
 
 # Network input and output coordinates.
 input_coordinates = [(-0.33, -1.), (0.33, -1.)]
-output_coordinates = [(-0.5, 1.), (0.,1.), (0.5, 1.)]
-hidden_coordinates = [[(-0.5, 0.5), (0.5, 0.5)], [(0.0, 0.0)], [(-0.5, -0.5), (0.5, -0.5)]]
+output_coordinates = [(-0.5, 1.), (0., 1.), (0.5, 1.)]
+hidden_coordinates = [[(-0.5, 0.5), (0.5, 0.5)],
+                      [(0.0, 0.0)], [(-0.5, -0.5), (0.5, -0.5)]]
 
 sub = Substrate(input_coordinates, output_coordinates, hidden_coordinates)
 activations = len(hidden_coordinates) + 2
 
 # Config for CPPN.
-config = neat.config.Config(neat.genome.DefaultGenome, neat.reproduction.DefaultReproduction,
-                            neat.species.DefaultSpeciesSet, neat.stagnation.DefaultStagnation,
-                            'config_cppn_mountain_car')
+config = neat.config.Config(
+    neat.genome.DefaultGenome,
+    neat.reproduction.DefaultReproduction,
+    neat.species.DefaultSpeciesSet,
+    neat.stagnation.DefaultStagnation,
+    'config_cppn_mountain_car')
 
 
 def run(gens, env):
-    winner, stats = run_hyper(gens, env, 200, config, sub, activations, max_trials=0)
-    print("hyperneat_mountain_car done") 
+    winner, stats = run_hyper(gens, env, 200, config,
+                              sub, activations, max_trials=0)
+    print("hyperneat_mountain_car done")
     return winner, stats
 
 

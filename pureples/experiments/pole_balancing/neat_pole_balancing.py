@@ -1,4 +1,4 @@
-import neat 
+import neat
 import logging
 import cPickle as pickle
 import gym
@@ -7,15 +7,18 @@ from pureples.shared.gym_runner import run_neat
 
 
 # Config for FeedForwardNetwork.
-config = neat.config.Config(neat.genome.DefaultGenome, neat.reproduction.DefaultReproduction,
-                            neat.species.DefaultSpeciesSet, neat.stagnation.DefaultStagnation,
-                            'config_neat_pole_balancing')
+config = neat.config.Config(
+    neat.genome.DefaultGenome,
+    neat.reproduction.DefaultReproduction,
+    neat.species.DefaultSpeciesSet,
+    neat.stagnation.DefaultStagnation,
+    'config_neat_pole_balancing')
 
 
 # Use the gym_runner to run this experiment using NEAT.
 def run(gens, env):
     winner, stats = run_neat(gens, env, 500, config)
-    print("neat_pole_balancing done") 
+    print("neat_pole_balancing done")
     return winner, stats
 
 
@@ -34,4 +37,3 @@ if __name__ == '__main__':
     draw_net(winner_net, filename="neat_pole_balancing_winner")
     with open('neat_pole_balancing_winner.pkl', 'wb') as output:
         pickle.dump(winner_net, output, pickle.HIGHEST_PROTOCOL)
-
