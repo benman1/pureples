@@ -1,6 +1,6 @@
 import neat
 import neat.nn
-import cPickle as pickle
+import _pickle as pickle
 from pureples.shared.substrate import Substrate
 from pureples.shared.visualize import draw_net
 from pureples.es_hyperneat.es_hyperneat import ESNetwork
@@ -94,4 +94,4 @@ if __name__ == '__main__':
     # Save CPPN if wished reused and draw it to file.
     draw_net(cppn, filename="es_hyperneat_xor_medium_cppn")
     with open('es_hyperneat_xor_medium_cppn.pkl', 'wb') as output:
-        pickle.dump(cppn, output, pickle.HIGHEST_PROTOCOL)
+        pickle.dump(cppn, output)

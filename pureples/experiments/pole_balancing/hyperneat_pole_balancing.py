@@ -1,6 +1,6 @@
 import neat
 import logging
-import cPickle as pickle
+import _pickle as pickle
 import gym
 from pureples.shared.visualize import draw_net
 from pureples.shared.substrate import Substrate
@@ -48,5 +48,5 @@ if __name__ == '__main__':
     winner_net = create_phenotype_network(cppn, sub)
     draw_net(cppn, filename="hyperneat_pole_balancing_cppn")
     with open('hyperneat_pole_balancing_cppn.pkl', 'wb') as output:
-        pickle.dump(cppn, output, pickle.HIGHEST_PROTOCOL)
+        pickle.dump(cppn, output)
     draw_net(winner_net, filename="hyperneat_pole_balancing_winner")

@@ -1,6 +1,6 @@
 import neat
 import logging
-import cPickle as pickle
+import _pickle as pickle
 import gym
 from pureples.shared.visualize import draw_net
 from pureples.shared.substrate import Substrate
@@ -48,4 +48,4 @@ if __name__ == '__main__':
     draw_net(cppn, filename="hyperneat_mountain_car_cppn")
     draw_net(net, filename="hyperneat_mountain_car_winner")
     with open('hyperneat_mountain_car_cppn.pkl', 'wb') as output:
-        pickle.dump(cppn, output, pickle.HIGHEST_PROTOCOL)
+        pickle.dump(cppn, output)

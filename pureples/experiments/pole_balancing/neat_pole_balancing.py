@@ -1,6 +1,6 @@
 import neat
 import logging
-import cPickle as pickle
+import _pickle as pickle
 import gym
 from pureples.shared.visualize import draw_net
 from pureples.shared.gym_runner import run_neat
@@ -36,4 +36,4 @@ if __name__ == '__main__':
     winner_net = neat.nn.FeedForwardNetwork.create(winner, config)
     draw_net(winner_net, filename="neat_pole_balancing_winner")
     with open('neat_pole_balancing_winner.pkl', 'wb') as output:
-        pickle.dump(winner_net, output, pickle.HIGHEST_PROTOCOL)
+        pickle.dump(winner_net, output)

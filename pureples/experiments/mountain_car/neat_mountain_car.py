@@ -1,6 +1,6 @@
 import neat
 import logging
-import cPickle as pickle
+import _pickle as pickle
 import gym
 from pureples.shared.visualize import draw_net
 from pureples.shared.gym_runner import run_neat
@@ -34,4 +34,4 @@ if __name__ == '__main__':
     net = neat.nn.FeedForwardNetwork.create(winner, config)
     draw_net(net, filename="neat_mountain_car_winner")
     with open('neat_mountain_car_winner.pkl', 'wb') as output:
-        pickle.dump(net, output, pickle.HIGHEST_PROTOCOL)
+        pickle.dump(net, output)

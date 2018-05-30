@@ -1,6 +1,6 @@
 import neat
 import neat.nn
-import cPickle as pickle
+import _pickle as pickle
 import sys
 import os.path
 from pureples.shared.visualize import draw_net
@@ -66,5 +66,5 @@ if __name__ == '__main__':
 
     # Save net if wished reused and draw it to a file.
     with open('winner_neat_xor.pkl', 'wb') as output:
-        pickle.dump(winner_net, output, pickle.HIGHEST_PROTOCOL)
+        pickle.dump(winner_net, output)
     draw_net(winner_net, filename="neat_xor_winner")

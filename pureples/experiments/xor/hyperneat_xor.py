@@ -1,6 +1,6 @@
 import neat
 import neat.nn
-import cPickle as pickle
+import _pickle as pickle
 from pureples.shared.visualize import draw_net
 from pureples.shared.substrate import Substrate
 from pureples.hyperneat.hyperneat import create_phenotype_network
@@ -81,6 +81,6 @@ if __name__ == '__main__':
 
     # Save CPPN if wished reused and draw it to file along with the winner.
     with open('hyperneat_xor_cppn.pkl', 'wb') as output:
-        pickle.dump(cppn, output, pickle.HIGHEST_PROTOCOL)
+        pickle.dump(cppn, output)
     draw_net(cppn, filename="hyperneat_xor_cppn")
     draw_net(winner_net, filename="hyperneat_xor_winner")
